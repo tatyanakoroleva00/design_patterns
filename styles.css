@@ -1,0 +1,19 @@
+tr {
+    width: 5rem;
+    height: 2rem;
+    border: 1px solid black;
+    padding: 2rem;
+    color: white;
+}
+.table-heading {
+    color: black;
+}
+.card--green {
+    background-color: green;
+}
+.card--black {
+    background-color: rgb(84, 68, 68);
+}
+.card--grey {
+    background-color: grey;
+}
