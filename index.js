@@ -13,6 +13,11 @@ const PEOPLE__LIST = [
         name: "Виталий",
         specialist: "Студент", 
         number: '+7 965 177 91 87'
+    },
+    {
+        name: "Вит",
+        specialist: "Студент", 
+        number: '+7 965 177 12 87'
     }
 ];
 
