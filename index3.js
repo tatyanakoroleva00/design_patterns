@@ -530,34 +530,235 @@
 // empl.setAge(25);
 // console.log(empl.getAge());
 
-// 32. Конструктор при наследовании в ООП в JavaScript
+// 33. Конструктор при наследовании в ООП в JavaScript
+
+// class User {
+//     constructor(name, surn) {
+//         this.name = name;
+//         this.surn = surn;
+//     }
+//     getName() {
+//         return this.name;
+//     }
+//     getSurn() {
+//         return this.surn;
+//     }
+// }
+// class Student extends User {
+//     constructor(name, surn, year) {
+//         super(name, surn);
+//         this.year = year;
+//     }
+//     getYear() {
+//         return this.year;
+//     }
+// }
+// let student = new Student('Nike', 'Lunov', 1992);
+// console.log(student.getName());
+// console.log(student.getSurn());
+// console.log(student.getYear());
+
+
+
+// 34. Приватные методы при наследовании в ООП в JavaScript
+
+// class OfficeWorkers  {
+//     constructor(name, age, number) {
+//         this.name = name;
+//         this.age = age;
+//         this.number = number;
+//     }
+//     #getNumber() {
+//         return this.number;
+//     }
+//     showNumber() {
+//         return this.number;
+//     }
+// }
+// class Employee extends OfficeWorkers{
+//     constructor(name, age, number) {
+//         super(name,age, number);
+//     }
+//     show() {
+//         return this.showNumber();
+//     }
+// }
+// let empl = new Employee('Vasya', 23, 4555);
+// console.log(empl.show());
+
+
+// 35. Приватные свойства при наследовании в ООП в JavaScript
+
+// class User {
+// 	#name;
+// 	#surn;
+	
+// 	setName(name) {
+// 		this.#name = name;
+// 	}
+// 	getName() {
+// 		return this.#name;
+// 	}
+	
+// 	setSurn(surn) {
+// 		this.#surn = surn;
+// 	}
+// 	getSurn() {
+// 		return this.#surn;
+// 	}
+// }
+
+// class Employee extends User {
+
+// }
+// let empl = new Employee;
+// empl.setSurn('Mike');
+// let name = empl.getSurn();
+// console.log(name);
+
+// 36. Проблема приватных свойств при наследовании в ООП в JavaScript
+
+// class User {
+// 	#name;
+	
+// 	setName(name) {
+// 		this.#name = name;
+// 	}
+// 	getName() {
+// 		return this.#name;
+// 	}
+// }
+
+// class Employee extends User {
+//     getInfo() {
+//         let name = this.getName();
+//         if (name.length > 0) {
+//             return name; 
+//         }
+//     }
+// }
+
+
+// let empl = new Employee();
+// empl.setName('Max');
+// console.log(empl.getInfo());
+
+// 37. Защищенные методы в ООП в JavaScript
+
+// class User {
+// 	setName(name) {
+// 		this.name = name;
+// 	}
+// 	getName() {
+// 		return this._capeFirst(this.name);
+// 	}
+	
+// 	_capeFirst(str) {
+// 		return str[0].toUpperCase() + str.slice(1);
+// 	}
+// }
+// // Воспользуемся этим защищенным методом в классе-потомке:
+
+// class Student extends User {
+// 	setSurn(surn) {
+// 		this.surn = surn;
+// 	}
+// 	getSurn() {
+// 		return this._capeFirst(this.surn);
+// 	}
+// }
+// let student = new Student();
+// student.setName('Mike');
+// console.log(student.getName());
+
+// 37. Защищенные методы в ООП в JavaScript
+// class User {
+//     setName(name) {
+//         if(this._notEmpty(name)) {
+//             this.name = name;
+//         }
+//     }
+
+//     getName() {
+//         return this.name;
+//     }
+//     _notEmpty(str) {
+//         return str.length > 0;
+//     }
+// }
+// class Employee extends User{
+//     setSurn(surn) {
+//         this.surn = surn;
+//     }
+//     getInfo () {
+//         if(this._notEmpty(this.surn)) {
+//             return this.surn;
+//         } 
+//     }
+// }
+// let empl = new Employee();
+// empl.setName('Mike');
+// empl.setSurn('Korolev');
+// console.log(empl.getInfo());
+
+
+// 38. Защищенные свойства в ООП в JavaScript
+// class User {
+// 	setName(name) {
+// 		this._name = name;
+// 	}
+// 	getName() {
+// 		return this._name;
+// 	}
+// }
+
+// class Employee extends User {
+// 	setEmplName() {
+//         let name = this.getName();
+// 		if (name.length > 0) {
+// 			this._name = name;
+// 		}
+// 	}
+//     getEmplName() {
+//         return this._name;
+//     }
+// }
+// let empl = new Employee();
+// empl.setName('Mike');
+// console.log(empl.getEmplName());
+
+
+// 39. Иерархия наследования классов в ООП в JavaScript
 
 class User {
-    constructor(name, surn) {
+    setName(name) {
         this.name = name;
-        this.surn = surn;
     }
     getName() {
         return this.name;
     }
-    getSurn() {
-        return this.surn;
-    }
 }
-class Student extends User {
-    constructor(name, surn, year) {
-        super(name, surn);
+class Employee extends User{
+    setYear(year) {
         this.year = year;
     }
     getYear() {
         return this.year;
     }
 }
-let student = new Student('Nike', 'Lunov', 1992);
-console.log(student.getName());
-console.log(student.getSurn());
-console.log(student.getYear());
-
-
-
-
+class Programmer extends Employee {
+    setSurn(surn) {
+        this.surn = surn;
+    }
+    getSurn() {
+        return this.surn;
+    }
+}
+class Designer extends Employee {
+    setOffice(office) {
+        this.office = office;
+    }
+    getOffice() {
+        return this.office;
+    }
+}
